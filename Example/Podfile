@@ -1,5 +1,6 @@
 use_frameworks!
 
 target 'Dispatch3_Tests' do
+  platform :ios, '9.0'
   pod 'Dispatch3', :path => '../'
 end

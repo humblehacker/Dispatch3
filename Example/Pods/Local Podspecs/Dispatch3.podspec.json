@@ -20,6 +20,5 @@
     "ios": "9.0"
   },
   "source_files": "Dispatch3/Classes/**/*",
-  "public_header_files": "Pod/Classes/**/*.h",
-  "frameworks": "Dispatch"
+  "public_header_files": "Pod/Classes/**/*.h"
 }

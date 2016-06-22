@@ -15,6 +15,4 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'Dispatch3/Classes/**/*'
-  s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'Dispatch'
 end
