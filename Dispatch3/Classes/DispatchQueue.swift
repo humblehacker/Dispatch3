@@ -43,10 +43,57 @@ class DispatchQueue: DispatchObject<dispatch_queue_t>
         dispatch_queue_set_specific(queue, &kCurrentQueueKey, context, nil)
     }
 
+    override
+    init(underlyingObject: dispatch_queue_t)
+    {
+        super.init(underlyingObject: underlyingObject)
+    }
+
     public var label: String { return String(UTF8String: dispatch_queue_get_label(underlyingObject)) ?? "" }
 
     var context: UnsafeMutablePointer<Void>
         { return UnsafeMutablePointer<Void>(Unmanaged<dispatch_queue_t>.passUnretained(underlyingObject).toOpaque()) }
+
+    public var qos: DispatchQoS
+    {
+        return DispatchQoS(underlyingQoSClass: dispatch_queue_get_qos_class(underlyingObject, nil))
+    }
+
+    public static var main: DispatchQueue = DispatchQueue(underlyingObject: dispatch_get_main_queue())
+
+    public class func global(attributes attributes: DispatchQueue.GlobalAttributes = .qosDefault) -> DispatchQueue
+    {
+        return DispatchQueue(underlyingObject: dispatch_get_global_queue(attributes.underlyingQoSClass, 0))
+    }
+}
+
+extension DispatchQueue
+{
+    public struct GlobalAttributes : OptionSetType {
+
+        public let rawValue: UInt64
+
+        public init(rawValue: UInt64)
+        {
+            self.rawValue = rawValue
+        }
+
+        public static let qosUserInteractive = DispatchQueue.GlobalAttributes(rawValue: 1 << 1)
+        public static let qosUserInitiated   = DispatchQueue.GlobalAttributes(rawValue: 1 << 2)
+        public static let qosDefault         = DispatchQueue.GlobalAttributes(rawValue: 1 << 3)
+        public static let qosUtility         = DispatchQueue.GlobalAttributes(rawValue: 1 << 4)
+        public static let qosBackground      = DispatchQueue.GlobalAttributes(rawValue: 1 << 5)
+
+        var underlyingQoSClass: qos_class_t
+        {
+            if contains(GlobalAttributes.qosUserInteractive) { return QOS_CLASS_USER_INTERACTIVE }
+            if contains(GlobalAttributes.qosUserInitiated) { return QOS_CLASS_USER_INITIATED}
+            if contains(GlobalAttributes.qosDefault) { return QOS_CLASS_DEFAULT }
+            if contains(GlobalAttributes.qosUtility) { return QOS_CLASS_UTILITY }
+            if contains(GlobalAttributes.qosBackground) { return QOS_CLASS_BACKGROUND }
+            return QOS_CLASS_DEFAULT
+        }
+    }
 }
 
 

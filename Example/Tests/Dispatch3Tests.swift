@@ -91,7 +91,7 @@ class Dispatch3Tests: XCTestCase {
 
     func testBarrierAsync()
     {
-        let barrierAsyncExpectation  = expectationWithDescription("DispatchQueue.barrier_async")
+        let barrierAsyncExpectation = expectationWithDescription("DispatchQueue.barrier_async")
 
         for i in 0..<10
         {
@@ -130,6 +130,36 @@ class Dispatch3Tests: XCTestCase {
         {
             print("barrier done")
         }
+    }
+
+    func testMainQueue()
+    {
+        let expectation = expectationWithDescription("DispatchQueue.main_queue")
+
+        let q = DispatchQueue.main
+
+        q.async
+        {
+            print("\(q.label)")
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
+    }
+
+    func testGlobalConcurrentQueue()
+    {
+        let expectation = expectationWithDescription("DispatchQueue.global_queue")
+
+        let q = DispatchQueue.global(attributes: [.qosBackground])
+
+        q.async
+        {
+            print("\(q.label)")
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
     }
 }
 

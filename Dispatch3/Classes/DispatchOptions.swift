@@ -68,6 +68,35 @@ public struct DispatchQoS : Equatable
         self.relativePriority = relativePriority
         self.qosClass = qosClass
     }
+
+    init(underlyingQoSClass: qos_class_t)
+    {
+        self.relativePriority = 0
+
+        switch underlyingQoSClass
+        {
+            case QOS_CLASS_BACKGROUND: qosClass = .background
+            case QOS_CLASS_UTILITY: qosClass = .utility
+            case QOS_CLASS_DEFAULT: qosClass = .`default`
+            case QOS_CLASS_USER_INITIATED: qosClass = .userInitiated
+            case QOS_CLASS_USER_INTERACTIVE: qosClass = .userInteractive
+            case QOS_CLASS_UNSPECIFIED: qosClass = .unspecified
+            default: qosClass = .`default`
+        }
+    }
+
+    var underlyingQoSClass: qos_class_t
+    {
+        switch qosClass
+        {
+            case .background: return QOS_CLASS_BACKGROUND
+            case .utility: return QOS_CLASS_UTILITY
+            case .`default`: return QOS_CLASS_DEFAULT
+            case .userInitiated: return QOS_CLASS_USER_INITIATED
+            case .userInteractive: return QOS_CLASS_USER_INTERACTIVE
+            case .unspecified: return QOS_CLASS_UNSPECIFIED
+        }
+    }
 }
 
 public func ==(a: DispatchQoS, b: DispatchQoS) -> Bool

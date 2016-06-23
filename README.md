@@ -54,6 +54,12 @@ class DispatchStuff
         }
         
         cq.async(flags: [.barrier]) { // called after cq is drained }
+        
+        // Dispatch on the main queue
+        DispatchQueue.main.async { // update the UI }
+        
+        // Dispatch on a global queue
+        DispatchQueue.global(attributes: [.qosBackground]).async { ... }
     }
 
     func bar()
