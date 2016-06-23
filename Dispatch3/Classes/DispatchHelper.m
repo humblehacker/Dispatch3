@@ -15,4 +15,9 @@
     dispatch_sync(queue, block);
 }
 
++ (void)dispatch_barrier_sync_noescape:(dispatch_queue_t)queue block:(WorkBlock)block
+{
+    dispatch_barrier_sync(queue, block);
+}
+
 @end

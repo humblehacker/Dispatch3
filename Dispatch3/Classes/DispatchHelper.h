@@ -16,8 +16,11 @@ typedef void(^WorkBlock)(void);
 
 @interface DispatchHelper : NSObject
 
-/** Hackaround that lets us call `dispatch_async` with a `@noescape` block */
+/** Hackaround that lets us call `dispatch_sync` and `dispatch_barrier_sync` with a `@noescape` block */
+
 + (void)dispatch_sync_noescape:(dispatch_queue_t)queue block:(WorkBlock __attribute__((noescape)))block;
+
++ (void)dispatch_barrier_sync_noescape:(dispatch_queue_t)queue block:(WorkBlock __attribute((noescape)))block;
 
 @end
 

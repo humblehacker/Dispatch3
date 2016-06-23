@@ -55,7 +55,7 @@ class DispatchQueue: DispatchObject<dispatch_queue_t>
 extension DispatchQueue
 {
     /// Implementation mostly from [this Apple Dev Forum post](https://forums.developer.apple.com/thread/8002#24898)
-    public func sync<T>(@noescape execute work: () throws -> T) rethrows -> T
+    public func sync<T>(flags flags: DispatchWorkItemFlags = DispatchWorkItemFlags(), @noescape execute work: () throws -> T) rethrows -> T
     {
         var result: T?
 
@@ -65,11 +65,15 @@ extension DispatchQueue
         {
             var blockError: ErrorType? = nil
 
-            DispatchHelper.dispatch_sync_noescape(queue)
+            if flags.contains(.barrier)
             {
-                do { result = try block() }
-                catch { blockError = error }
+                DispatchHelper.dispatch_barrier_sync_noescape(queue) { do { result = try block() } catch { blockError = error } }
             }
+            else
+            {
+                DispatchHelper.dispatch_sync_noescape(queue) { do { result = try block() } catch { blockError = error } }
+            }
+
             if let blockError = blockError { try block2(myerror: blockError) }
         }
 

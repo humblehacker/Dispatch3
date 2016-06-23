@@ -98,7 +98,7 @@ class Dispatch3Tests: XCTestCase {
             concurrentTestQueue.async
             {
                 NSThread.sleepForTimeInterval(0.25)
-                print("done")
+                print("done: \(i) ")
             }
         }
 
@@ -111,6 +111,25 @@ class Dispatch3Tests: XCTestCase {
         }
 
         waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
+    }
+
+    func testBarrierSync()
+    {
+        for i in 0..<10
+        {
+            concurrentTestQueue.async
+            {
+                NSThread.sleepForTimeInterval(0.25)
+                print("done: \(i) ")
+            }
+        }
+
+        concurrentTestQueue.sync { print("submitting barrier block") }
+
+        concurrentTestQueue.sync(flags: [.barrier])
+        {
+            print("barrier done")
+        }
     }
 }
 
