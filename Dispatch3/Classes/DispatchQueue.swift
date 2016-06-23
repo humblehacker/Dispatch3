@@ -43,6 +43,8 @@ class DispatchQueue: DispatchObject<dispatch_queue_t>
         dispatch_queue_set_specific(queue, &kCurrentQueueKey, context, nil)
     }
 
+    public var label: String { return String(UTF8String: dispatch_queue_get_label(underlyingObject)) ?? "" }
+
     var context: UnsafeMutablePointer<Void>
         { return UnsafeMutablePointer<Void>(Unmanaged<dispatch_queue_t>.passUnretained(underlyingObject).toOpaque()) }
 }
@@ -77,14 +79,46 @@ extension DispatchQueue
     }
 
     public
-    func async(closure: ()->Void)
+    func async(group group: DispatchGroup? = nil, qos: DispatchQoS = DispatchQoS.`default`, flags: DispatchWorkItemFlags = DispatchWorkItemFlags(), execute work: @convention(block) () -> Void)
     {
-        dispatch_async(underlyingObject, closure)
+        let work = DispatchWorkItem(group: group, qos: qos, flags: flags, block: work)
+        async(execute: work)
     }
 
-    public func after(when: DispatchTime, execute work: @convention(block) () -> Void)
+    public
+    func after(when: DispatchTime, execute work: @convention(block) () -> Void)
     {
         dispatch_after(when.rawValue, underlyingObject, work)
+    }
+
+    public
+    func sync(execute workItem: DispatchWorkItem)
+    {
+        if workItem.flags.contains(.barrier)
+        {
+            dispatch_barrier_sync(underlyingObject, workItem.block)
+            return
+        }
+
+        sync { workItem.perform() }
+    }
+
+    public
+    func async(execute workItem: DispatchWorkItem)
+    {
+        if workItem.flags.contains(.barrier)
+        {
+            dispatch_barrier_async(underlyingObject, workItem.block)
+            return
+        }
+
+        if let group = workItem.group
+        {
+            dispatch_group_async(group.underlyingObject, underlyingObject, workItem.block)
+            return
+        }
+
+        dispatch_async(underlyingObject, workItem.block)
     }
 }
 

@@ -21,7 +21,8 @@ class Dispatch3Tests: XCTestCase {
         super.tearDown()
     }
 
-    var serialTestQueue = DispatchQueue(label: "test", attributes: [DispatchQueueAttributes.serial])
+    var serialTestQueue = DispatchQueue(label: "com.humblehacker.Dispatch3Test.serial", attributes: [DispatchQueueAttributes.serial])
+    var concurrentTestQueue = DispatchQueue(label: "com.humblehacker.Dispatch3Test.concurrent", attributes: [DispatchQueueAttributes.concurrent])
 
     func testDispatchPrecondition()
     {
@@ -69,4 +70,79 @@ class Dispatch3Tests: XCTestCase {
 
         waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
     }
+
+    func testGroupAsyncNotify()
+    {
+        let groupAsyncExpectation  = expectationWithDescription("DispatchGroup.async")
+        let groupNotifyExpectation = expectationWithDescription("DispatchGroup.notify")
+
+        let g = DispatchGroup()
+
+        g.enter()
+
+        serialTestQueue.async(group: g) { groupAsyncExpectation.fulfill() }
+
+        g.notify(queue: serialTestQueue) { groupNotifyExpectation.fulfill() }
+
+        g.leave()
+
+        waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
+    }
+
+    func testBarrierAsync()
+    {
+        let barrierAsyncExpectation  = expectationWithDescription("DispatchQueue.barrier_async")
+
+        for i in 0..<10
+        {
+            concurrentTestQueue.async
+            {
+                NSThread.sleepForTimeInterval(0.25)
+                print("done")
+            }
+        }
+
+        concurrentTestQueue.sync { print("submitting barrier block") }
+
+        concurrentTestQueue.async(flags: [.barrier])
+        {
+            barrierAsyncExpectation.fulfill()
+            print("barrier done")
+        }
+
+        waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,7 +11,7 @@ import Dispatch
 public
 class DispatchObject<T>
 {
-    let underlyingObject: T
+    public let underlyingObject: T
 
     init(underlyingObject: T)
     {

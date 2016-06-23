@@ -33,6 +33,13 @@ enum DispatchTimeInterval
 }
 
 public
+enum DispatchTimeoutResult
+{
+    case Success
+    case TimedOut
+}
+
+public
 struct DispatchTime
 {
     public let rawValue: dispatch_time_t
@@ -73,4 +80,10 @@ public func -(time: DispatchTime, seconds: Double) -> DispatchTime
 {
     let ns = Int64(-seconds * Double(NSEC_PER_SEC))
     return DispatchTime(rawValue: dispatch_time(time.rawValue, ns))
+}
+
+public
+struct DispatchWallTime
+{
+
 }

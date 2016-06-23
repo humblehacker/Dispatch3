@@ -38,6 +38,22 @@ class DispatchStuff
         // dispatch_after is much simpler
         sq.after(.now() + 5) { print "Isn't that much easier?" }
         sq.after(.now() + .milliseconds(500)) { print "No conversions necessary" }
+        
+        // Dispatch groups!
+        let g = DispatchGroup()
+        cq.async(group: g) { // Do the thing }
+        cq.async(group: g) { // Do the other thing }
+        g.enter()
+        someObject.customThing(completion: { g.leave() })
+        group.notify { // Do when thing,other thing, and custom thing are done }
+        
+        // Barrier blocks!
+        for i in 0..<10
+        {
+            cq.async { // Do the thing }
+        }
+        
+        cq.async(flags: [.barrier]) { // called after cq is drained }
     }
 
     func bar()
