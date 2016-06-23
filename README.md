@@ -36,7 +36,8 @@ class DispatchStuff
         try sq.sync { throw SomeException }
 
         // dispatch_after is much simpler
-        sq.after(.now() + .seconds(5)) { print "Isn't that much easier?" }
+        sq.after(.now() + 5) { print "Isn't that much easier?" }
+        sq.after(.now() + .milliseconds(500)) { print "No conversions necessary" }
     }
 
     func bar()
