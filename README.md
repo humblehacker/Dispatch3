@@ -41,22 +41,22 @@ class DispatchStuff
         
         // Dispatch groups!
         let g = DispatchGroup()
-        cq.async(group: g) { // Do the thing }
-        cq.async(group: g) { // Do the other thing }
+        cq.async(group: g) { /* Do the thing */ }
+        cq.async(group: g) { /* Do the other thing */ }
         g.enter()
         someObject.customThing(completion: { g.leave() })
-        group.notify { // Do when thing,other thing, and custom thing are done }
+        group.notify { /* Do when thing, other thing, and custom thing are done */ }
         
         // Barrier blocks!
         for i in 0..<10
         {
-            cq.async { // Do the thing }
+            cq.async { /* Do the thing */ }
         }
         
-        cq.async(flags: .barrier) { // called after cq is drained }
+        cq.async(flags: .barrier) { /* called after cq is drained */ }
         
         // Dispatch on the main queue
-        DispatchQueue.main.async { // update the UI }
+        DispatchQueue.main.async { /* update the UI */ }
         
         // Dispatch on a global queue
         DispatchQueue.global(attributes: .qosBackground).async { ... }
