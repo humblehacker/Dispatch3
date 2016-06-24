@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'Dispatch3'
-  s.version          = '0.5.0'
-  s.summary          = 'iOS10 workalike Dispatch framework'
+  s.version          = '0.6.0'
+  s.summary          = 'iOS 10 workalike Dispatch framework for iOS 9'
   s.description      = <<-DESC
   Dispatch3 is a wrapper around the iOS9 Dispatch framework providing the same syntax and functionality as the new Dispatch framework in iOS10. It provides features like the ability to return values and throw exceptions from sync closures, dispatchPrecondition(), and the much simpler replacement for dispatch_after().
                        DESC
