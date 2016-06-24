@@ -130,7 +130,7 @@ extension DispatchQueue
     }
 
     public
-    func async(group group: DispatchGroup? = nil, qos: DispatchQoS = DispatchQoS.`default`, flags: DispatchWorkItemFlags = DispatchWorkItemFlags(), execute work: @convention(block) () -> Void)
+    func async(group group: DispatchGroup? = nil, qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], execute work: @convention(block) () -> Void)
     {
         let work = DispatchWorkItem(group: group, qos: qos, flags: flags, block: work)
         async(execute: work)
@@ -145,24 +145,12 @@ extension DispatchQueue
     public
     func sync(execute workItem: DispatchWorkItem)
     {
-        if workItem.flags.contains(.barrier)
-        {
-            dispatch_barrier_sync(underlyingObject, workItem.block)
-            return
-        }
-
-        sync { workItem.perform() }
+        sync { workItem.block() }
     }
 
     public
     func async(execute workItem: DispatchWorkItem)
     {
-        if workItem.flags.contains(.barrier)
-        {
-            dispatch_barrier_async(underlyingObject, workItem.block)
-            return
-        }
-
         if let group = workItem.group
         {
             dispatch_group_async(group.underlyingObject, underlyingObject, workItem.block)

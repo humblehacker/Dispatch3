@@ -8,27 +8,20 @@ import Dispatch
 public
 class DispatchWorkItem
 {
-    let flags: DispatchWorkItemFlags
-    let qos:   DispatchQoS
     let group: DispatchGroup?
-    let block: () -> Void
-    static let supportedFlags: DispatchWorkItemFlags = [.barrier]
+    let block: dispatch_block_t
 
     public
-    init(group: DispatchGroup? = nil, qos: DispatchQoS = .`default`, flags: DispatchWorkItemFlags = DispatchWorkItemFlags(), block: @convention(block) () -> Void)
+    init(group: DispatchGroup? = nil, qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], block: @convention(block) () -> Void)
     {
-        precondition(flags.isSubsetOf(DispatchWorkItem.supportedFlags), "unsupported flags \(flags)")
-
         self.group = group
-        self.qos = qos
-        self.flags = flags
-        self.block = block
+        self.block = dispatch_block_create_with_qos_class(flags.underlyingBlockFlags, qos.underlyingQoSClass, Int32(qos.relativePriority), block)
     }
 
     public
     func perform()
     {
-        block()
+        fatalError("Not yet supported")
     }
 
     public
@@ -50,7 +43,7 @@ class DispatchWorkItem
     }
 
     public
-    func notify(qos qos: DispatchQoS = .`default`, flags: DispatchWorkItemFlags = DispatchWorkItemFlags(), queue: DispatchQueue, execute block: @convention(block) () -> Void)
+    func notify(qos qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], queue: DispatchQueue, execute block: @convention(block) () -> Void)
     {
         fatalError("Not yet supported")
     }
@@ -88,6 +81,20 @@ struct DispatchWorkItemFlags: OptionSetType, RawRepresentable
     public static let noQoS                = DispatchWorkItemFlags(rawValue: 1 << 3)
     public static let inheritQoS           = DispatchWorkItemFlags(rawValue: 1 << 4)
     public static let enforceQoS           = DispatchWorkItemFlags(rawValue: 1 << 5)
+
+    var underlyingBlockFlags : dispatch_block_flags_t
+    {
+        switch self
+        {
+            case DispatchWorkItemFlags.barrier: return DISPATCH_BLOCK_BARRIER
+            case DispatchWorkItemFlags.detached: return DISPATCH_BLOCK_DETACHED
+            case DispatchWorkItemFlags.assignCurrentContext: return DISPATCH_BLOCK_ASSIGN_CURRENT
+            case DispatchWorkItemFlags.noQoS: return DISPATCH_BLOCK_NO_QOS_CLASS
+            case DispatchWorkItemFlags.inheritQoS: return DISPATCH_BLOCK_INHERIT_QOS_CLASS
+            case DispatchWorkItemFlags.enforceQoS: return DISPATCH_BLOCK_ENFORCE_QOS_CLASS
+            default: return dispatch_block_flags_t(0)
+        }
+    }
 }
 
 

@@ -104,10 +104,10 @@ class Dispatch3Tests: XCTestCase {
 
         concurrentTestQueue.sync { print("submitting barrier block") }
 
-        concurrentTestQueue.async(flags: [.barrier])
+        concurrentTestQueue.async(flags: .barrier)
         {
             barrierAsyncExpectation.fulfill()
-            print("barrier done")
+            print("async barrier done")
         }
 
         waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
@@ -126,9 +126,9 @@ class Dispatch3Tests: XCTestCase {
 
         concurrentTestQueue.sync { print("submitting barrier block") }
 
-        concurrentTestQueue.sync(flags: [.barrier])
+        concurrentTestQueue.sync(flags: .barrier)
         {
-            print("barrier done")
+            print("sync barrier done")
         }
     }
 

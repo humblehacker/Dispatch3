@@ -19,7 +19,7 @@ public class DispatchGroup : DispatchObject<dispatch_group_t>
 extension DispatchGroup
 {
     public
-    func notify(qos qos: DispatchQoS = .`default`, flags: DispatchWorkItemFlags = DispatchWorkItemFlags(), queue: DispatchQueue, execute work: @convention(block) () -> ())
+    func notify(qos qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], queue: DispatchQueue, execute work: @convention(block) () -> ())
     {
         let workItem = DispatchWorkItem(group: self, qos: qos, flags: flags, block: work)
         notify(queue: queue, work: workItem)
