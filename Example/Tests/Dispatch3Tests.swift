@@ -21,8 +21,8 @@ class Dispatch3Tests: XCTestCase {
         super.tearDown()
     }
 
-    var serialTestQueue = DispatchQueue(label: "com.humblehacker.Dispatch3Test.serial", attributes: [DispatchQueueAttributes.serial])
-    var concurrentTestQueue = DispatchQueue(label: "com.humblehacker.Dispatch3Test.concurrent", attributes: [DispatchQueueAttributes.concurrent])
+    var serialTestQueue = DispatchQueue(label: "com.humblehacker.Dispatch3Test.serial", attributes: .serial)
+    var concurrentTestQueue = DispatchQueue(label: "com.humblehacker.Dispatch3Test.concurrent", attributes: .concurrent)
 
     func testDispatchPrecondition()
     {

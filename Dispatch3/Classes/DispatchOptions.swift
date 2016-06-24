@@ -14,33 +14,48 @@ struct DispatchQueueAttributes: OptionSetType
     public var rawValue: UInt64
 
     public
-    init(arrayLiteral: DispatchQueueAttributes...)
-    {
-        self.rawValue = arrayLiteral.reduce(0, combine: { (value, attribute) -> UInt64 in
-            return value | attribute.rawValue
-        })
-    }
-
-    public
     init(rawValue: UInt64)
     {
         self.rawValue = rawValue
     }
 
-    public static let autoreleaseInherit  = DispatchQueueAttributes(rawValue: 1 << 0 )
-    public static let autoreleaseNever    = DispatchQueueAttributes(rawValue: 1 << 1 )
-    public static let autoreleaseWorkItem = DispatchQueueAttributes(rawValue: 1 << 2 )
-    public static let concurrent          = DispatchQueueAttributes(rawValue: 1 << 3 )
-    public static let initiallyInactive   = DispatchQueueAttributes(rawValue: 1 << 4 )
-    public static let noQoS               = DispatchQueueAttributes(rawValue: 1 << 5 )
-    public static let qosBackground       = DispatchQueueAttributes(rawValue: 1 << 6 )
-    public static let qosDefault          = DispatchQueueAttributes(rawValue: 1 << 7 )
-    public static let qosUserInitiated    = DispatchQueueAttributes(rawValue: 1 << 8 )
-    public static let qosUserInteractive  = DispatchQueueAttributes(rawValue: 1 << 9 )
-    public static let qosUtility          = DispatchQueueAttributes(rawValue: 1 << 10)
-    public static let serial              = DispatchQueueAttributes(rawValue: 1 << 11)
-}
+    public static let serial              = DispatchQueueAttributes(rawValue: 0)
+    public static let concurrent          = DispatchQueueAttributes(rawValue: 1 << 1 )
 
+    /* Unsupported
+    public static let initiallyInactive   = DispatchQueueAttributes(rawValue: 1 << 2 )
+    public static let autoreleaseInherit  = DispatchQueueAttributes(rawValue: 1 << 3 )
+    public static let autoreleaseWorkItem = DispatchQueueAttributes(rawValue: 1 << 4 )
+    public static let autoreleaseNever    = DispatchQueueAttributes(rawValue: 1 << 5 )
+    */
+
+    public static let qosUserInteractive  = DispatchQueueAttributes(rawValue: 1 << 6 )
+    public static let qosUserInitiated    = DispatchQueueAttributes(rawValue: 1 << 7 )
+    public static let qosDefault          = DispatchQueueAttributes(rawValue: 1 << 8 )
+    public static let qosUtility          = DispatchQueueAttributes(rawValue: 1 << 9 )
+    public static let qosBackground       = DispatchQueueAttributes(rawValue: 1 << 10)
+    
+    /* Unsupported
+    public static let noQoS               = DispatchQueueAttributes(rawValue: 1 << 11)
+    */
+
+    var underlyingAttributes: dispatch_queue_attr_t
+    {
+        var attr:    dispatch_queue_attr_t! = DISPATCH_QUEUE_SERIAL
+        var qosAttr: dispatch_qos_class_t   = QOS_CLASS_UNSPECIFIED
+
+        if contains(.concurrent) { attr = DISPATCH_QUEUE_CONCURRENT }
+
+        if contains(.qosUserInteractive)     { qosAttr = QOS_CLASS_USER_INTERACTIVE }
+        else if contains(.qosUserInitiated)  { qosAttr = QOS_CLASS_USER_INITIATED }
+        else if contains(.qosDefault)        { qosAttr = QOS_CLASS_DEFAULT }
+        else if contains(.qosUtility)        { qosAttr = QOS_CLASS_UTILITY }
+        else if contains(.qosBackground)     { qosAttr = QOS_CLASS_BACKGROUND }
+
+        return dispatch_queue_attr_make_with_qos_class(attr, qosAttr, 0)
+    }
+}
+                                                                                   
 public struct DispatchQoS : Equatable
 {
     public let qosClass: DispatchQoS.QoSClass

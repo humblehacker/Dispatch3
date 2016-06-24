@@ -1,5 +1,5 @@
 PODS:
-  - Dispatch3 (0.1.0)
+  - Dispatch3 (0.5.0)
 
 DEPENDENCIES:
   - Dispatch3 (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Dispatch3: d80841adb9c780770c9f515333d6f4699bf16d59
+  Dispatch3: 68597038271ff58457b45f0b5341f6c2360a491f
 
 PODFILE CHECKSUM: e9a782c4fc49e57a61b45be9f4c96f5dcddf9812
 

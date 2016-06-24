@@ -22,21 +22,7 @@ class DispatchQueue: DispatchObject<dispatch_queue_t>
     public
     init(label: String, attributes: DispatchQueueAttributes, target: DispatchQueue? = nil)
     {
-        var attr: dispatch_queue_attr_t!
-        if attributes.contains(DispatchQueueAttributes.serial)
-        {
-            attr = DISPATCH_QUEUE_SERIAL
-        }
-        else if attributes.contains(.concurrent)
-        {
-            attr = DISPATCH_QUEUE_CONCURRENT
-        }
-        else
-        {
-            fatalError("attributes not yet supported")
-        }
-
-        let queue = dispatch_queue_create(label, attr)
+        let queue = dispatch_queue_create(label, attributes.underlyingAttributes)
 
         super.init(underlyingObject: queue)
 
@@ -87,11 +73,11 @@ extension DispatchQueue
         var underlyingQoSClass: qos_class_t
         {
             if contains(GlobalAttributes.qosUserInteractive) { return QOS_CLASS_USER_INTERACTIVE }
-            if contains(GlobalAttributes.qosUserInitiated) { return QOS_CLASS_USER_INITIATED}
-            if contains(GlobalAttributes.qosDefault) { return QOS_CLASS_DEFAULT }
-            if contains(GlobalAttributes.qosUtility) { return QOS_CLASS_UTILITY }
-            if contains(GlobalAttributes.qosBackground) { return QOS_CLASS_BACKGROUND }
-            return QOS_CLASS_DEFAULT
+            if contains(GlobalAttributes.qosUserInitiated)   { return QOS_CLASS_USER_INITIATED}
+            if contains(GlobalAttributes.qosDefault)         { return QOS_CLASS_DEFAULT }
+            if contains(GlobalAttributes.qosUtility)         { return QOS_CLASS_UTILITY }
+            if contains(GlobalAttributes.qosBackground)      { return QOS_CLASS_BACKGROUND }
+            return QOS_CLASS_BACKGROUND
         }
     }
 }

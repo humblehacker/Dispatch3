@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03EE82DB8550F7BFBAF30A87B03B52D4 /* DispatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DEAF3DF72766E2DA2EEF7A062C81B0 /* DispatchHelper.m */; };
 		291F04888EBF0B137DA08229F3F236AD /* Pods-Dispatch3_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F604241A761E410EAD37EB4EF060E83C /* Pods-Dispatch3_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		31409542B474ABFBDA4A8A80FE902D9C /* DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A25289B0F615C84590925E0F4C2D4F /* DispatchTime.swift */; };
-		486DB512D1714B48E9CB10ED6E912B36 /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = A73A8E6FC3C3A6FE7C9E63A56B9C6BBC /* Info.plist */; };
-		5AE582320D237B402CFC7D240587F738 /* Dispatch3.h in Headers */ = {isa = PBXBuildFile; fileRef = 124C316D6BEB68D084EED3B9E56625C6 /* Dispatch3.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5AF0E71A7593A5E202552D6E /* DispatchGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E34F0197F16A6C33FE7D /* DispatchGroup.swift */; };
-		5AF0E9BCA30C9C30F6CE7D0D /* DispatchWorkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E62287E17FD0CC5DF9AD /* DispatchWorkItem.swift */; };
-		6E87A0965E624D4D294F5742465F17BF /* DispatchAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C9C7F32C3496968824FEDF16723BC4 /* DispatchAssertions.swift */; };
-		73D843A2649C9D03C5894B3CE6266D3A /* DispatchHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C26D914A11AF7C7226ED6035A47F5C4 /* DispatchHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		81AE9BD286B20A512E9448AA1418FAAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		85841A2F4939262707908ED13CCAFF02 /* DispatchObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC09BE474FDE0AD0BF9060C2B2814EB6 /* DispatchObject.swift */; };
-		B89E202DCF694BC61416F47976002144 /* Dispatch3-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DD9EAD93FC844CF8B5F5FE10B541689 /* Dispatch3-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D313581C2665BA159782C86AD4313A8C /* DispatchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDE7A9785E040E81B3E86EA47160D44 /* DispatchOptions.swift */; };
-		DEC44D0039F36EF26D9E261248CD5D26 /* Dispatch3-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC36BB9C25474F5B7B78EA932A2DDE /* Dispatch3-dummy.m */; };
+		344ECB8B2728DBF0E6E5876C3E252175 /* DispatchWorkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F5BEB9BCC31488D1F68752A8D3CB7 /* DispatchWorkItem.swift */; };
+		52B64B8F800AD122C305DD72F3B2F5D9 /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 7324AD0AF4CDFDD6AF76FEF3BC3A523C /* Info.plist */; };
+		545FAC72D8890F6688E827364C2A13D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		5AD66C9F7C26CC8A28CD9EA88C3CA251 /* Dispatch3-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DD9EAD93FC844CF8B5F5FE10B541689 /* Dispatch3-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5D830591E323C676B31C284279E10DA8 /* DispatchGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966772F9DBA1BBFECBDA5E5890CD6F22 /* DispatchGroup.swift */; };
+		74A24826A0F4A6D88E7E9CFC3194CF50 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC923B648F58721538CECD6BB58820 /* DispatchQueue.swift */; };
+		74F7000989145F212867D7EA928EC416 /* DispatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE763009554DEDBA2AF48466D88E85 /* DispatchHelper.m */; };
+		85D85EFFB35D3923FCFD5DBCA5CE805F /* Dispatch3.h in Headers */ = {isa = PBXBuildFile; fileRef = A22CFD5B37EDD41058CE858377AFF5BB /* Dispatch3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B7413800BEB1A6814AAF2D1590114301 /* DispatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD235A544B5CE1F1CE62F204907AE519 /* DispatchTime.swift */; };
+		CBB65B95B81B101D15D1F6603E8B496F /* DispatchObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BD0ACFD5879EEE45F5347BBBAE57DE /* DispatchObject.swift */; };
 		E1E3EC8B4D1F1A328198602070EE28B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		E61135345DF9FAD3E5E64B219231158D /* Pods-Dispatch3_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFEF448884B098048CBF1BBEE1AC820 /* Pods-Dispatch3_Tests-dummy.m */; };
-		F7B657C9091C08CF2085B82D4E5D96CF /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CDE6936F530139636B8FE86ACAA71A /* DispatchQueue.swift */; };
+		F0DE001A9AB16A9C9A1A9F1247F9F2DA /* Dispatch3-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC36BB9C25474F5B7B78EA932A2DDE /* Dispatch3-dummy.m */; };
+		F8282CB07FDC66FAE8227C913CF3B999 /* DispatchAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74806E820E934229FD4D1C6380B29C3 /* DispatchAssertions.swift */; };
+		FCF23DC93CEC74ACE3F8F7BF7F5CF12D /* DispatchHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C8A096C9F2A13B8AAD4C1A5EF66FB21 /* DispatchHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FEA963D464DA4BA82AEA480941C6234A /* DispatchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A578E575E54B3B87F35721E6DD42EA /* DispatchOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +31,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2C820BC8DB341DC15B9D0286B7DC0182;
+			remoteGlobalIDString = F278A5448DDC8B9689C29FE930F2514F;
 			remoteInfo = Dispatch3;
 		};
 /* End PBXContainerItemProxy section */
@@ -39,43 +39,43 @@
 /* Begin PBXFileReference section */
 		041B702CF422CB85C44430A7EBD0E781 /* Pods-Dispatch3_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Dispatch3_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		0BAC36BB9C25474F5B7B78EA932A2DDE /* Dispatch3-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Dispatch3-dummy.m"; sourceTree = "<group>"; };
-		124C316D6BEB68D084EED3B9E56625C6 /* Dispatch3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Dispatch3.h; sourceTree = "<group>"; };
-		1CDE7A9785E040E81B3E86EA47160D44 /* DispatchOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchOptions.swift; sourceTree = "<group>"; };
 		1DD9EAD93FC844CF8B5F5FE10B541689 /* Dispatch3-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Dispatch3-umbrella.h"; sourceTree = "<group>"; };
 		20049B134601A05285ED307F86540861 /* Pods-Dispatch3_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Dispatch3_Tests-resources.sh"; sourceTree = "<group>"; };
 		2178647FAC447B3816622D8C2CDEB09A /* Pods-Dispatch3_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Dispatch3_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		233DDA4FD011441A2CD6C3640BE31C0C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37A578E575E54B3B87F35721E6DD42EA /* DispatchOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchOptions.swift; sourceTree = "<group>"; };
 		41156902C0DBE19DA1702DA6DEA4C750 /* Dispatch3.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Dispatch3.xcconfig; sourceTree = "<group>"; };
-		5AF0E34F0197F16A6C33FE7D /* DispatchGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchGroup.swift; sourceTree = "<group>"; };
-		5AF0E62287E17FD0CC5DF9AD /* DispatchWorkItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchWorkItem.swift; sourceTree = "<group>"; };
 		678AD72FDB2DDDC5BBD3B15BEECDE252 /* Dispatch3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Dispatch3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72E4018C0809696CD7F7FAA19B0C0E02 /* Pods-Dispatch3_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Dispatch3_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		7324AD0AF4CDFDD6AF76FEF3BC3A523C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73A2527FC79231323380A466E9FD7AB4 /* Dispatch3-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Dispatch3-prefix.pch"; sourceTree = "<group>"; };
-		84CDE6936F530139636B8FE86ACAA71A /* DispatchQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
+		826F5BEB9BCC31488D1F68752A8D3CB7 /* DispatchWorkItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchWorkItem.swift; sourceTree = "<group>"; };
+		82BD0ACFD5879EEE45F5347BBBAE57DE /* DispatchObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchObject.swift; sourceTree = "<group>"; };
 		858E8BB1F2C4AFAD5BAB8682BCA1A1A8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86CC923B648F58721538CECD6BB58820 /* DispatchQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		8A8E9F39D80A09AE6EEBA7F6D376148D /* Pods_Dispatch3_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dispatch3_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BC9136E09F96EF40EC0EF2DCE000EFB /* Dispatch3.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Dispatch3.modulemap; sourceTree = "<group>"; };
+		92FE763009554DEDBA2AF48466D88E85 /* DispatchHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = DispatchHelper.m; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9C26D914A11AF7C7226ED6035A47F5C4 /* DispatchHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DispatchHelper.h; sourceTree = "<group>"; };
-		A73A8E6FC3C3A6FE7C9E63A56B9C6BBC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		966772F9DBA1BBFECBDA5E5890CD6F22 /* DispatchGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchGroup.swift; sourceTree = "<group>"; };
+		9C8A096C9F2A13B8AAD4C1A5EF66FB21 /* DispatchHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DispatchHelper.h; sourceTree = "<group>"; };
+		A22CFD5B37EDD41058CE858377AFF5BB /* Dispatch3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Dispatch3.h; sourceTree = "<group>"; };
 		A83366B117922A3E6B089F83580680D2 /* Pods-Dispatch3_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Dispatch3_Tests.modulemap"; sourceTree = "<group>"; };
-		AC09BE474FDE0AD0BF9060C2B2814EB6 /* DispatchObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchObject.swift; sourceTree = "<group>"; };
-		B1C9C7F32C3496968824FEDF16723BC4 /* DispatchAssertions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchAssertions.swift; sourceTree = "<group>"; };
+		AD235A544B5CE1F1CE62F204907AE519 /* DispatchTime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchTime.swift; sourceTree = "<group>"; };
 		B1F56EE0836D2E48D0E1CD3977DE7364 /* Pods-Dispatch3_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Dispatch3_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		B9A25289B0F615C84590925E0F4C2D4F /* DispatchTime.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchTime.swift; sourceTree = "<group>"; };
+		C74806E820E934229FD4D1C6380B29C3 /* DispatchAssertions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchAssertions.swift; sourceTree = "<group>"; };
 		CDFEF448884B098048CBF1BBEE1AC820 /* Pods-Dispatch3_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Dispatch3_Tests-dummy.m"; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E1017E515030A9F71BACBB2D59F342FE /* Pods-Dispatch3_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Dispatch3_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E4DEAF3DF72766E2DA2EEF7A062C81B0 /* DispatchHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = DispatchHelper.m; sourceTree = "<group>"; };
 		F604241A761E410EAD37EB4EF060E83C /* Pods-Dispatch3_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Dispatch3_Tests-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A7B59FD5F6BB512259D4BD89B8C5A4AD /* Frameworks */ = {
+		8D8D55F8B113E8E74FE75209FAFFA9DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AE9BD286B20A512E9448AA1418FAAD /* Foundation.framework in Frameworks */,
+				545FAC72D8890F6688E827364C2A13D8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,28 +136,20 @@
 			);
 			sourceTree = "<group>";
 		};
-		85800EF523628538474F0FE9118FE24F /* Dispatch3 */ = {
+		91AF6EEF563EDF9B6179B58E79D6CF44 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				96218C1A8172DE63AB50451CFA3B5FA3 /* Classes */,
-			);
-			path = Dispatch3;
-			sourceTree = "<group>";
-		};
-		96218C1A8172DE63AB50451CFA3B5FA3 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				124C316D6BEB68D084EED3B9E56625C6 /* Dispatch3.h */,
-				B1C9C7F32C3496968824FEDF16723BC4 /* DispatchAssertions.swift */,
-				9C26D914A11AF7C7226ED6035A47F5C4 /* DispatchHelper.h */,
-				E4DEAF3DF72766E2DA2EEF7A062C81B0 /* DispatchHelper.m */,
-				AC09BE474FDE0AD0BF9060C2B2814EB6 /* DispatchObject.swift */,
-				1CDE7A9785E040E81B3E86EA47160D44 /* DispatchOptions.swift */,
-				84CDE6936F530139636B8FE86ACAA71A /* DispatchQueue.swift */,
-				B9A25289B0F615C84590925E0F4C2D4F /* DispatchTime.swift */,
-				A73A8E6FC3C3A6FE7C9E63A56B9C6BBC /* Info.plist */,
-				5AF0E62287E17FD0CC5DF9AD /* DispatchWorkItem.swift */,
-				5AF0E34F0197F16A6C33FE7D /* DispatchGroup.swift */,
+				A22CFD5B37EDD41058CE858377AFF5BB /* Dispatch3.h */,
+				C74806E820E934229FD4D1C6380B29C3 /* DispatchAssertions.swift */,
+				966772F9DBA1BBFECBDA5E5890CD6F22 /* DispatchGroup.swift */,
+				9C8A096C9F2A13B8AAD4C1A5EF66FB21 /* DispatchHelper.h */,
+				92FE763009554DEDBA2AF48466D88E85 /* DispatchHelper.m */,
+				82BD0ACFD5879EEE45F5347BBBAE57DE /* DispatchObject.swift */,
+				37A578E575E54B3B87F35721E6DD42EA /* DispatchOptions.swift */,
+				86CC923B648F58721538CECD6BB58820 /* DispatchQueue.swift */,
+				AD235A544B5CE1F1CE62F204907AE519 /* DispatchTime.swift */,
+				826F5BEB9BCC31488D1F68752A8D3CB7 /* DispatchWorkItem.swift */,
+				7324AD0AF4CDFDD6AF76FEF3BC3A523C /* Info.plist */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -176,6 +168,14 @@
 			path = "Example/Pods/Target Support Files/Dispatch3";
 			sourceTree = "<group>";
 		};
+		B660F528FFF4711213B8E83720584364 /* Dispatch3 */ = {
+			isa = PBXGroup;
+			children = (
+				91AF6EEF563EDF9B6179B58E79D6CF44 /* Classes */,
+			);
+			path = Dispatch3;
+			sourceTree = "<group>";
+		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,7 +187,7 @@
 		C6C9F66679939B7140E33BD85BF4816A /* Dispatch3 */ = {
 			isa = PBXGroup;
 			children = (
-				85800EF523628538474F0FE9118FE24F /* Dispatch3 */,
+				B660F528FFF4711213B8E83720584364 /* Dispatch3 */,
 				AC78F096EDBC1DF38DE9B8FD7D932407 /* Support Files */,
 			);
 			name = Dispatch3;
@@ -221,36 +221,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E3613BFF3DAD699DEBC3410F2433A665 /* Headers */ = {
+		CEB03835205F696AD4712E2CCE9ABAE7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B89E202DCF694BC61416F47976002144 /* Dispatch3-umbrella.h in Headers */,
-				5AE582320D237B402CFC7D240587F738 /* Dispatch3.h in Headers */,
-				73D843A2649C9D03C5894B3CE6266D3A /* DispatchHelper.h in Headers */,
+				5AD66C9F7C26CC8A28CD9EA88C3CA251 /* Dispatch3-umbrella.h in Headers */,
+				85D85EFFB35D3923FCFD5DBCA5CE805F /* Dispatch3.h in Headers */,
+				FCF23DC93CEC74ACE3F8F7BF7F5CF12D /* DispatchHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2C820BC8DB341DC15B9D0286B7DC0182 /* Dispatch3 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 68782AD61949B6B10376602DC2FF36A1 /* Build configuration list for PBXNativeTarget "Dispatch3" */;
-			buildPhases = (
-				0F2DA6412D11A17380BFEC4CFD5650CD /* Sources */,
-				A7B59FD5F6BB512259D4BD89B8C5A4AD /* Frameworks */,
-				E3613BFF3DAD699DEBC3410F2433A665 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Dispatch3;
-			productName = Dispatch3;
-			productReference = 678AD72FDB2DDDC5BBD3B15BEECDE252 /* Dispatch3.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		A76BE11CBC388700343C11EDBB62A3BB /* Pods-Dispatch3_Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45EAAE8C323529F76691038B47342834 /* Build configuration list for PBXNativeTarget "Pods-Dispatch3_Tests" */;
@@ -267,6 +250,23 @@
 			name = "Pods-Dispatch3_Tests";
 			productName = "Pods-Dispatch3_Tests";
 			productReference = 8A8E9F39D80A09AE6EEBA7F6D376148D /* Pods_Dispatch3_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F278A5448DDC8B9689C29FE930F2514F /* Dispatch3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73EF6C73A4DB717853C23298F6D9335D /* Build configuration list for PBXNativeTarget "Dispatch3" */;
+			buildPhases = (
+				E20C1551117E94599ADF3158B19DDC69 /* Sources */,
+				8D8D55F8B113E8E74FE75209FAFFA9DC /* Frameworks */,
+				CEB03835205F696AD4712E2CCE9ABAE7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Dispatch3;
+			productName = Dispatch3;
+			productReference = 678AD72FDB2DDDC5BBD3B15BEECDE252 /* Dispatch3.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -290,35 +290,35 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C820BC8DB341DC15B9D0286B7DC0182 /* Dispatch3 */,
+				F278A5448DDC8B9689C29FE930F2514F /* Dispatch3 */,
 				A76BE11CBC388700343C11EDBB62A3BB /* Pods-Dispatch3_Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0F2DA6412D11A17380BFEC4CFD5650CD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DEC44D0039F36EF26D9E261248CD5D26 /* Dispatch3-dummy.m in Sources */,
-				6E87A0965E624D4D294F5742465F17BF /* DispatchAssertions.swift in Sources */,
-				03EE82DB8550F7BFBAF30A87B03B52D4 /* DispatchHelper.m in Sources */,
-				85841A2F4939262707908ED13CCAFF02 /* DispatchObject.swift in Sources */,
-				D313581C2665BA159782C86AD4313A8C /* DispatchOptions.swift in Sources */,
-				F7B657C9091C08CF2085B82D4E5D96CF /* DispatchQueue.swift in Sources */,
-				31409542B474ABFBDA4A8A80FE902D9C /* DispatchTime.swift in Sources */,
-				486DB512D1714B48E9CB10ED6E912B36 /* Info.plist in Sources */,
-				5AF0E9BCA30C9C30F6CE7D0D /* DispatchWorkItem.swift in Sources */,
-				5AF0E71A7593A5E202552D6E /* DispatchGroup.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BD479E9939514F77DE647B1A6DE354AA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E61135345DF9FAD3E5E64B219231158D /* Pods-Dispatch3_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E20C1551117E94599ADF3158B19DDC69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0DE001A9AB16A9C9A1A9F1247F9F2DA /* Dispatch3-dummy.m in Sources */,
+				F8282CB07FDC66FAE8227C913CF3B999 /* DispatchAssertions.swift in Sources */,
+				5D830591E323C676B31C284279E10DA8 /* DispatchGroup.swift in Sources */,
+				74F7000989145F212867D7EA928EC416 /* DispatchHelper.m in Sources */,
+				CBB65B95B81B101D15D1F6603E8B496F /* DispatchObject.swift in Sources */,
+				FEA963D464DA4BA82AEA480941C6234A /* DispatchOptions.swift in Sources */,
+				74A24826A0F4A6D88E7E9CFC3194CF50 /* DispatchQueue.swift in Sources */,
+				B7413800BEB1A6814AAF2D1590114301 /* DispatchTime.swift in Sources */,
+				344ECB8B2728DBF0E6E5876C3E252175 /* DispatchWorkItem.swift in Sources */,
+				52B64B8F800AD122C305DD72F3B2F5D9 /* Info.plist in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +328,7 @@
 		2B427420E12E7D3EE11AD2BD3402C00B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Dispatch3;
-			target = 2C820BC8DB341DC15B9D0286B7DC0182 /* Dispatch3 */;
+			target = F278A5448DDC8B9689C29FE930F2514F /* Dispatch3 */;
 			targetProxy = 8F2F12DE48A94B57E406946771CB1717 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -376,13 +376,13 @@
 			};
 			name = Debug;
 		};
-		0E5E73ED8695AEDDD82C2ABCBD97AAD7 /* Debug */ = {
+		3A3B3CF067281A63756F36C2FD53EBFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 41156902C0DBE19DA1702DA6DEA4C750 /* Dispatch3.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -395,16 +395,15 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Dispatch3/Dispatch3.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Dispatch3;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		5292733BFD5FEF07835F24B625B8460A /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -473,6 +472,36 @@
 			};
 			name = Debug;
 		};
+		9AEA614A8D6C7A9B8E281836A970022C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41156902C0DBE19DA1702DA6DEA4C750 /* Dispatch3.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Dispatch3/Dispatch3-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Dispatch3/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Dispatch3/Dispatch3.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Dispatch3;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		C7E474A03CAE21F1CB6046E7344C59BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -511,35 +540,6 @@
 			};
 			name = Release;
 		};
-		F046F27784E4FDBF43AC42CC7FF740CD /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41156902C0DBE19DA1702DA6DEA4C750 /* Dispatch3.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Dispatch3/Dispatch3-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Dispatch3/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Dispatch3/Dispatch3.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Dispatch3;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -561,11 +561,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		68782AD61949B6B10376602DC2FF36A1 /* Build configuration list for PBXNativeTarget "Dispatch3" */ = {
+		73EF6C73A4DB717853C23298F6D9335D /* Build configuration list for PBXNativeTarget "Dispatch3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0E5E73ED8695AEDDD82C2ABCBD97AAD7 /* Debug */,
-				F046F27784E4FDBF43AC42CC7FF740CD /* Release */,
+				9AEA614A8D6C7A9B8E281836A970022C /* Debug */,
+				3A3B3CF067281A63756F36C2FD53EBFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
