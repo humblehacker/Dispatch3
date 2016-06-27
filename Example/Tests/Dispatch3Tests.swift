@@ -24,6 +24,36 @@ class Dispatch3Tests: XCTestCase {
     var serialTestQueue = DispatchQueue(label: "com.humblehacker.Dispatch3Test.serial", attributes: .serial)
     var concurrentTestQueue = DispatchQueue(label: "com.humblehacker.Dispatch3Test.concurrent", attributes: .concurrent)
 
+    func testMainQueue()
+    {
+        let expectation = expectationWithDescription("DispatchQueue.main_queue")
+
+        let q = DispatchQueue.main
+
+        q.async
+        {
+            log("\(q.label)")
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(2) { error in if error != nil { log("timed out: \(error!)") } }
+    }
+
+    func testGlobalConcurrentQueue()
+    {
+        let expectation = expectationWithDescription("DispatchQueue.global_queue")
+
+        let q = DispatchQueue.global(attributes: [.qosBackground])
+
+        q.async
+        {
+            log("\(q.label)")
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(2) { error in if error != nil { log("timed out: \(error!)") } }
+    }
+
     func testDispatchPrecondition()
     {
         // There's no real good way to unit test assertions, so this test case exists just as a sanity check.
@@ -32,6 +62,23 @@ class Dispatch3Tests: XCTestCase {
 
         dispatchPrecondition(.notOnQueue(serialTestQueue))
         serialTestQueue.sync { dispatchPrecondition(.onQueue(serialTestQueue)) }
+
+        let mainExpectation   = expectationWithDescription("DispatchQueue.main_queue")
+        let globalExpectation = expectationWithDescription("DispatchQueue.global_queue")
+
+        DispatchQueue.main.async
+        {
+            dispatchPrecondition(.onQueue(DispatchQueue.main))
+            mainExpectation.fulfill()
+        }
+
+        DispatchQueue.global(attributes: [.qosBackground]).async
+        {
+            dispatchPrecondition(.onQueue(DispatchQueue.global(attributes: [.qosBackground])))
+            globalExpectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(2) { error in if error != nil { log("timed out: \(error!)") } }
     }
     
     func testSyncCanReturnValue()
@@ -55,7 +102,7 @@ class Dispatch3Tests: XCTestCase {
             expectation.fulfill()
         }
 
-        waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
+        waitForExpectationsWithTimeout(2) { error in if error != nil { log("timed out: \(error!)") } }
     }
 
     func testAfter()
@@ -68,7 +115,7 @@ class Dispatch3Tests: XCTestCase {
             expectation.fulfill()
         }
 
-        waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
+        waitForExpectationsWithTimeout(2) { error in if error != nil { log("timed out: \(error!)") } }
     }
 
     func testGroupAsyncNotify()
@@ -86,7 +133,7 @@ class Dispatch3Tests: XCTestCase {
 
         g.leave()
 
-        waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
+        waitForExpectationsWithTimeout(2) { error in if error != nil { log("timed out: \(error!)") } }
     }
 
     func testBarrierAsync()
@@ -98,19 +145,19 @@ class Dispatch3Tests: XCTestCase {
             concurrentTestQueue.async
             {
                 NSThread.sleepForTimeInterval(0.25)
-                print("done: \(i) ")
+                log("done: \(i) ")
             }
         }
 
-        concurrentTestQueue.sync { print("submitting barrier block") }
+        concurrentTestQueue.sync { log("submitting barrier block") }
 
         concurrentTestQueue.async(flags: .barrier)
         {
             barrierAsyncExpectation.fulfill()
-            print("async barrier done")
+            log("async barrier done")
         }
 
-        waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
+        waitForExpectationsWithTimeout(2) { error in if error != nil { log("timed out: \(error!)") } }
     }
 
     func testBarrierSync()
@@ -120,53 +167,66 @@ class Dispatch3Tests: XCTestCase {
             concurrentTestQueue.async
             {
                 NSThread.sleepForTimeInterval(0.25)
-                print("done: \(i) ")
+                log("done: \(i) ")
             }
         }
 
-        concurrentTestQueue.sync { print("submitting barrier block") }
+        concurrentTestQueue.sync { log("submitting barrier block") }
 
         concurrentTestQueue.sync(flags: .barrier)
         {
-            print("sync barrier done")
+            log("sync barrier done")
         }
     }
 
-    func testMainQueue()
+    weak var weakValue: Foo?
+
+    func testSpecificValues()
     {
-        let expectation = expectationWithDescription("DispatchQueue.main_queue")
+        let expectDestroyed = expectationWithDescription("DispatchQueue.specific_value.destroyed")
 
-        let q = DispatchQueue.main
+        let q = DispatchQueue(label: "com.humblehacker.Dispatch3Test.serial.specific_values")
+        let key = DispatchSpecificKey<Foo>()
 
-        q.async
+        autoreleasepool
         {
-            print("\(q.label)")
-            expectation.fulfill()
+            // Scope to allow our reference to value to be released - setSpecificKey should retain the value
+            do
+            {
+                let value = Foo(value: 5, expectation: expectDestroyed)
+                weakValue = value
+                q.setSpecific(key: key, value: value)
+            }
+
+            let result = q.getSpecific(key: key)
+            XCTAssertEqual(Foo(value: 5), result)
+
+            q.setSpecific(key: key, value: nil)
+
+            XCTAssertNil(q.getSpecific(key: key))
         }
 
-        waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
-    }
-
-    func testGlobalConcurrentQueue()
-    {
-        let expectation = expectationWithDescription("DispatchQueue.global_queue")
-
-        let q = DispatchQueue.global(attributes: [.qosBackground])
-
-        q.async
-        {
-            print("\(q.label)")
-            expectation.fulfill()
-        }
-
-        waitForExpectationsWithTimeout(2) { error in if error != nil { NSLog("timed out: \(error!)") } }
+        waitForExpectationsWithTimeout(2) { error in if error != nil { log("timed out: \(error!)") } }
+        XCTAssertNil(weakValue)
     }
 }
 
+class Foo: Equatable
+{
+    private(set) var value: Int = 0
+    private(set) var expectation: XCTestExpectation?
+    init(value: Int, expectation: XCTestExpectation? = nil)
+    {
+        self.value = value
+        self.expectation = expectation
+    }
+    deinit { expectation?.fulfill() }
+}
 
-
-
-
+func ==(lhs: Foo, rhs: Foo) -> Bool
+{
+    return lhs.value == rhs.value
+}
 
 
 

@@ -8,16 +8,18 @@
 
 import Dispatch
 
-public enum DispatchPredicate
+public
+enum DispatchPredicate
 {
     case onQueue(DispatchQueue)
     case onQueueAsBarrier(DispatchQueue)
     case notOnQueue(DispatchQueue)
 }
 
-var kCurrentQueueKey = DispatchSpecificKey<DispatchQueue>()
+var kCurrentQueueKey: DispatchSpecificKey<Unmanaged<DispatchQueue>> = DispatchSpecificKey()
 
-public func dispatchPrecondition(@autoclosure condition: () -> DispatchPredicate, file: StaticString = #file, line: UInt = #line)
+public
+func dispatchPrecondition(@autoclosure condition: () -> DispatchPredicate, file: StaticString = #file, line: UInt = #line)
 {
     switch condition()
     {
@@ -32,7 +34,16 @@ public func dispatchPrecondition(@autoclosure condition: () -> DispatchPredicate
     }
 }
 
-private func onQueue(queue: DispatchQueue) -> Bool
+private
+func onQueue(queue: DispatchQueue) -> Bool
 {
-    return dispatch_get_specific(&kCurrentQueueKey) == queue.context
+    return currentQueue() === queue
+}
+
+private
+func currentQueue() -> DispatchQueue?
+{
+    guard let unmanaged = DispatchQueue.getSpecific(key: kCurrentQueueKey) else { return nil }
+    let currentQueue: DispatchQueue = unmanaged.takeUnretainedValue()
+    return currentQueue
 }

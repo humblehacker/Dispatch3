@@ -12,33 +12,28 @@ import Dispatch
 public
 class DispatchQueue: DispatchObject<dispatch_queue_t>
 {
-    public
+    public convenience
     init(__label label: UnsafePointer<Int8>, attr: dispatch_queue_attr_t?)
     {
         let queue = dispatch_queue_create(label, attr)
-        super.init(underlyingObject: queue)
+        self.init(underlyingObject: queue)
     }
 
-    public
-    init(label: String, attributes: DispatchQueueAttributes, target: DispatchQueue? = nil)
+    public convenience
+    init(label: String, attributes: DispatchQueueAttributes = .serial, target: DispatchQueue? = nil)
     {
         let queue = dispatch_queue_create(label, attributes.underlyingAttributes)
-
-        super.init(underlyingObject: queue)
-
-        dispatch_queue_set_specific(queue, &kCurrentQueueKey, context, nil)
+        self.init(underlyingObject: queue)
     }
 
     override
     init(underlyingObject: dispatch_queue_t)
     {
         super.init(underlyingObject: underlyingObject)
+        annotateQueue()
     }
 
     public var label: String { return String(UTF8String: dispatch_queue_get_label(underlyingObject)) ?? "" }
-
-    var context: UnsafeMutablePointer<Void>
-        { return UnsafeMutablePointer<Void>(Unmanaged<dispatch_queue_t>.passUnretained(underlyingObject).toOpaque()) }
 
     public var qos: DispatchQoS
     {
@@ -55,6 +50,14 @@ class DispatchQueue: DispatchObject<dispatch_queue_t>
 
 extension DispatchQueue
 {
+    private
+    func annotateQueue()
+    {
+        // Use `passUnretained` to avoid reference cycle
+        let unmanaged: Unmanaged<DispatchQueue> = Unmanaged.passUnretained(self)
+        setSpecific(key: kCurrentQueueKey, value: unmanaged)
+    }
+
     public struct GlobalAttributes : OptionSetType {
 
         public let rawValue: UInt64
@@ -147,11 +150,91 @@ extension DispatchQueue
     }
 }
 
+// MARK: - Specific Values
 
 final public class DispatchSpecificKey<T>
 {
-    public init()
+    public init() {}
+}
+
+final private class DispatchSpecificValue<T>
+{
+    var value: T
+
+    init(value: T)
     {
+        self.value = value
     }
+
+    class
+    func from(mutableVoidPointer mutableVoidPointer: UnsafeMutablePointer<Void>) -> DispatchSpecificValue<T>
+    {
+        let cOpaquePointer: COpaquePointer = COpaquePointer(mutableVoidPointer)
+        let unmanaged: Unmanaged<DispatchSpecificValue<T>> = Unmanaged.fromOpaque(cOpaquePointer)
+        return unmanaged.takeUnretainedValue()
+    }
+
+    var mutableVoidPointer: UnsafeMutablePointer<Void>
+    {
+        let unmanagedRetained: Unmanaged<DispatchSpecificValue<T>> = Unmanaged.passRetained(self)
+        let cOpaquePointer: COpaquePointer = unmanagedRetained.toOpaque()
+        return UnsafeMutablePointer<Void>(cOpaquePointer)
+    }
+}
+
+public
+extension DispatchQueue
+{
+    public class
+    func getSpecific<T>(key key: DispatchSpecificKey<T>) -> T?
+    {
+        let storedKey = UnsafeMutablePointer<Void>(Unmanaged.passUnretained(key).toOpaque())
+
+        let p = dispatch_get_specific(storedKey)
+        guard p != nil else { return nil }
+
+        let specificValue: DispatchSpecificValue<T> = DispatchSpecificValue.from(mutableVoidPointer: p)
+
+        return specificValue.value
+    }
+
+    public
+    func getSpecific<T>(key key: DispatchSpecificKey<T>) -> T?
+    {
+        let storedKey = UnsafeMutablePointer<Void>(Unmanaged.passUnretained(key).toOpaque())
+
+        let p = dispatch_queue_get_specific(underlyingObject, storedKey)
+        guard p != nil else { return nil }
+
+        let specificValue: DispatchSpecificValue<T> = DispatchSpecificValue.from(mutableVoidPointer: p)
+
+        return specificValue.value
+    }
+
+    public
+    func setSpecific<T>(key key: DispatchSpecificKey<T>, value:T?)
+    {
+        let storedKey = UnsafeMutablePointer<Void>(Unmanaged.passUnretained(key).toOpaque())
+
+        if let val = value
+        {
+            let wrappedValue = DispatchSpecificValue(value: val)
+            let mutableVoidPointer: UnsafeMutablePointer<Void> = wrappedValue.mutableVoidPointer
+
+            dispatch_queue_set_specific(underlyingObject, storedKey, mutableVoidPointer, releaseSpecificValue)
+        }
+        else
+        {
+            dispatch_queue_set_specific(underlyingObject, storedKey, nil, nil)
+        }
+    }
+}
+
+private
+func releaseSpecificValue(specificValue mutableVoidPointer: UnsafeMutablePointer<Void>)
+{
+    let cOpaquePointer = COpaquePointer(mutableVoidPointer)
+    let unmanaged      = Unmanaged<AnyObject>.fromOpaque(cOpaquePointer)
+    unmanaged.release()
 }
 
