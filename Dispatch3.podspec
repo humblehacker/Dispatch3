@@ -13,6 +13,8 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/humblehacker'
 
   s.ios.deployment_target = '9.0'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '2.3' }
 
   s.source_files = 'Dispatch3/Classes/**/*'
+
 end
